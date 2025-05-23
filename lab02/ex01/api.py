@@ -22,20 +22,8 @@ def caesar_decrypt():
     decrypted_text = caesar_cipher.decrypt_text(cipher_text, key)
     return jsonify({'decrypted_message': decrypted_text})
 
-# main function
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
-
 # VIGENERE CIPHER ALGORITHM
 vigenere_cipher = VigenereCipher()
-
-@app.route('/api/caesar/encrypt', methods=['POST'])
-def caesar_encrypt():
-    data = request.json
-    plain_text = data['plain_text']
-    key = int(data['key'])
-    encrypted_text = caesar_cipher.encrypt_text(plain_text, key)
-    return jsonify({'encrypted_text': encrypted_text})
 
 # VIGENERE ENCRYPTION
 @app.route('/api/vigenere/encrypt', methods=['POST'])
@@ -54,3 +42,7 @@ def vigenere_decrypt():
     key = data['key']
     decrypted_text = vigenere_cipher.vigenere_decrypt(cipher_text, key)
     return jsonify({'decrypted_text': decrypted_text})
+
+# main function
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)
